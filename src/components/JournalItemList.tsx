@@ -5,7 +5,7 @@ import { formatDate } from "../helpers/DateTime";
 interface IProps {
   journal: {
     date: string;
-    entries: { time: string; content: string }[];
+    entries: { time: string; ustime: string; content: string }[];
   }[];
   removeFromJournal: (date: string, index: number) => void;
 }
@@ -64,7 +64,7 @@ const JournalItemList: React.FC<IProps> = (props: IProps) => {
                             : "li-entry-content"
                         }
                       >
-                        {item.time} - {item.content}
+                        {item.ustime} - {item.content}
                       </div>
                       <footer>
                         <span

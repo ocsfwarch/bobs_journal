@@ -1,16 +1,22 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { formatTime } from "../helpers/DateTime";
+import { formatTime, formatUSTime } from "../helpers/DateTime";
 import { Button } from "@material-ui/core";
 
 interface IProps {
-  addToJournal: (date: string, time: string, content: string) => void;
+  addToJournal: (
+    date: string,
+    time: string,
+    ustime: string,
+    content: string
+  ) => void;
 }
 
 const AddJournalItem: React.FC<IProps> = (props: IProps) => {
   const [journalEntry, setJournalEntry] = useState({
     date: "",
     time: "",
+    ustime: "",
     content: "",
   });
 
@@ -27,7 +33,12 @@ const AddJournalItem: React.FC<IProps> = (props: IProps) => {
 
   const submitForm = () => {
     // Save the user item
-    props.addToJournal(journalEntry.date, formatTime(), journalEntry.content);
+    props.addToJournal(
+      journalEntry.date,
+      formatTime(),
+      formatUSTime(),
+      journalEntry.content
+    );
 
     history.push(`/`);
   };

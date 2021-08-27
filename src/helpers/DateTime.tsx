@@ -7,15 +7,22 @@ const formatTime = () => {
   const theDate = new Date();
   const the24Time = theDate.toLocaleTimeString("en-GB");
   const the12Time = theDate.toLocaleTimeString("en-US");
-  console.log(`theTime = ${the12Time}`)
-  //const index = theTime.lastIndexOf(":");
-  //let results = "";
-  //if (index !== -1) {
-  //  results = `${theTime.slice(0, index)}${theTime.slice(theTime.length - 2)}`;
-  //} else {
-  //  results = theTime;
-  //}
   return the24Time;
+};
+
+const formatUSTime = () => {
+  const theDate = new Date();
+  const the12Time = theDate.toLocaleTimeString("en-US");
+  const index = the12Time.lastIndexOf(":");
+  let results = "";
+  if (index !== -1) {
+    results = `${the12Time.slice(0, index)}${the12Time.slice(
+      the12Time.length - 2
+    )}`;
+  } else {
+    results = the12Time;
+  }
+  return results.toLowerCase();
 };
 
 const formatDate = (dateItem: string) => {
@@ -60,4 +67,4 @@ const determineExt = (day: number) => {
   }
 };
 
-export { formatDate, formatTime };
+export { formatDate, formatTime, formatUSTime };

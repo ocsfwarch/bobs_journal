@@ -9,7 +9,7 @@ import { checkForLocalStorage } from "./helpers/Storage";
 export interface IState {
   journal: {
     date: string;
-    entries: { time: string; content: string }[];
+    entries: { time: string; ustime: string; content: string }[];
   }[];
 }
 
@@ -62,11 +62,16 @@ const App = () => {
     setStatus(strStatus);
   };
 
-  const addToJournal = async (date: string, time: string, content: string) => {
+  const addToJournal = async (
+    date: string,
+    time: string,
+    ustime: string,
+    content: string
+  ) => {
     let bResults = false;
     const temp = journal.find((entry) => entry.date === date);
     if (temp) {
-      temp.entries.push({ time: time, content: content });
+      temp.entries.push({ time: time, ustime: ustime, content: content });
       setJournal((previous) => [...previous]);
       bResults = true;
     } else {
@@ -74,7 +79,7 @@ const App = () => {
         ...previous,
         {
           date: date,
-          entries: [{ time: time, content: content }],
+          entries: [{ time: time, ustime: ustime, content: content }],
         },
       ]);
       bResults = true;
