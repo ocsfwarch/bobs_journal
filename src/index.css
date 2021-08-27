@@ -12,6 +12,10 @@ code {
     monospace;
 }
 
+/*
+   START - ADDED FOR PROJECT
+*/
+
 label {
   font-weight: 600;
   max-width: 100%;
@@ -147,10 +151,28 @@ textarea {
 }
 
 .ul-journal-entries .li-entry-content {
-  min-height: 5em;
+  height: 5em;
   background-color: red;
   padding: 0.25em;
   word-break: break-all;
+  transition: all 1s linear;
+}
+
+.ul-journal-entries .li-entry-content-expand {
+  height: 15em;
+  transition: all 1s linear;
+}
+
+.show-more-display {
+  display: inline;
+}
+
+.show-more-display::after {
+  content: " ";
+}
+
+.show-more-hide {
+  display: none;
 }
 
 .ul-journal-entries footer {
