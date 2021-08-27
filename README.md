@@ -8,7 +8,7 @@ Bob's Journal displays user entries in a chronological order, with the most rece
 
 ## Application Image
 
-![Landing Page](https://github.com/ocsfwarch/bobs_journal/blob/master/project_docs/app_image.png?raw=true)
+![Landing Page](https://github.com/ocsfwarch/bobs_journal/blob/master/Project_Docs/app_image.png?raw=true)
 
 # Technical Overview
 
