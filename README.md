@@ -1,6 +1,6 @@
 # Bob's Journal
 
-This purpose of this app is to allow the user the ability to create, read, update, and delete journal entries.
+This purpose of this app is to allow the user the ability to create, read, and delete journal entries.
 
 ## Description
 
