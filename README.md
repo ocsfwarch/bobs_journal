@@ -8,6 +8,8 @@ Bob's Journal displays user entries in a chronological order, with the most rece
 
 ## Application Image
 
+![Landing Page](https://github.com/ocsfwarch/bobs_journal/blob/master/project_docs/app_image.png?raw=true)
+
 # Technical Overview
 
 - This application was bootstrapped using `create-react-app` with the `typescript`f template.
