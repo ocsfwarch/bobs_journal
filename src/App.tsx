@@ -15,7 +15,6 @@ export interface IState {
 
 const App = () => {
   const [status, setStatus] = useState(""); // This contains the status information
-  const [useLocalStorage, setUseLocalStorage] = useState(false);
   const [journal, setJournal] = useState<IState["journal"]>([]);
 
   // The purpose of this hook is to clear the status field
@@ -34,34 +33,14 @@ const App = () => {
     async function fetchJournalList() {
       const bStorageAvailable = await checkForLocalStorage();
       if (bStorageAvailable) {
-        setUseLocalStorage(bStorageAvailable);
-        const theJournal = await JSON.parse(
-          localStorage.getItem("journal_entries")!
-        );
-        /*
-        if (theJournal && theJournal.length > 1) {
-          // Sort the top level entries
-          theJournal.sort((a: any, b: any) => {
-            let aDate = new Date(a.date);
-            let bDate = new Date(b.date);
-            return bDate.getTime() - aDate.getTime();
-          });
-          // Sort the journal entries
-          sortedJournal = theJournal.map((item: any) => {
-            const tempDate = item.date;
-            console.log(`LEN = ${item.entries.length}`);
-            if (item.entries.length > 1) {
-              item.entries.sort((a: any, b: any) => {
-                let aDate = new Date(`${tempDate}T${a.time}`);
-                let bDate = new Date(`${tempDate}T${b.time}`);
-                return bDate.getTime() - aDate.getTime();
-              });
-            }
-            return item;
-          });
+        const storageResults = localStorage.getItem("journal_entries");
+
+        if (storageResults) {
+          const theJournal = await JSON.parse(storageResults);
+          if (theJournal && theJournal.length) {
+            setJournal([...theJournal]);
+          }
         }
-        */
-        setJournal([...theJournal]);
       }
     }
     fetchJournalList();
@@ -70,13 +49,14 @@ const App = () => {
   // The purpose of this hook is to update the local storage
   // when an entry is added to the journal.
   useEffect(() => {
-    async function storeJournalList(bUseStorage: boolean, theList: any) {
+    async function storeJournalList(theList: any) {
+      const bUseStorage = await checkForLocalStorage();
       if (bUseStorage) {
         localStorage.setItem("journal_entries", JSON.stringify(theList));
       }
     }
-    storeJournalList(useLocalStorage, journal);
-  }, [journal, useLocalStorage]);
+    storeJournalList(journal);
+  }, [journal]);
 
   const updateStatus = (strStatus: string) => {
     setStatus(strStatus);
