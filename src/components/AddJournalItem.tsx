@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { formatTime, formatUSTime } from "../helpers/DateTime";
+import { formatDate, formatTime, formatUSTime } from "../helpers/DateTime";
 import { Button } from "@material-ui/core";
 
 interface IProps {
   addToJournal: (
     date: string,
+    formatdate: string,
     time: string,
     ustime: string,
     content: string
@@ -15,6 +16,7 @@ interface IProps {
 const AddJournalItem: React.FC<IProps> = (props: IProps) => {
   const [journalEntry, setJournalEntry] = useState({
     date: "",
+    formatdate: "",
     time: "",
     ustime: "",
     content: "",
@@ -35,6 +37,7 @@ const AddJournalItem: React.FC<IProps> = (props: IProps) => {
     // Save the user item
     props.addToJournal(
       journalEntry.date,
+      formatDate(journalEntry.date),
       formatTime(),
       formatUSTime(),
       journalEntry.content
@@ -44,37 +47,40 @@ const AddJournalItem: React.FC<IProps> = (props: IProps) => {
   };
 
   return (
-    <section className="form-section">
-      <h1>Add a Journal Entry</h1>
-      <form onSubmit={submitForm}>
-        <label htmlFor="date">Entry Date: </label>
-        <input
-          type="date"
-          placeholder="MM-DD-YYYY"
-          pattern="\d{2}-\d{2}-\d{4}"
-          name="date"
-          id="date"
-          onChange={handleChange}
-          required
-        />
-        <label htmlFor="content">Entry Content:</label>
-        <textarea
-          name="content"
-          id="content"
-          onChange={handleChange}
-          required
-        ></textarea>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={(e) => {
-            submitForm();
-          }}
-        >
-          Save
-        </Button>
-      </form>
-    </section>
+    <div className="form-container">
+      <section className="form-section">
+        <h1>Add a Journal Entry</h1>
+        <form onSubmit={submitForm}>
+          <label htmlFor="date">Entry Date: </label>
+          <input
+            type="date"
+            placeholder="MM-DD-YYYY"
+            pattern="\d{2}-\d{2}-\d{4}"
+            name="date"
+            id="date"
+            value={journalEntry.date}
+            onChange={handleChange}
+            required
+          />
+          <label htmlFor="content">Entry Content:</label>
+          <textarea
+            name="content"
+            id="content"
+            onChange={handleChange}
+            required
+          ></textarea>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={(e) => {
+              submitForm();
+            }}
+          >
+            Save
+          </Button>
+        </form>
+      </section>
+    </div>
   );
 };
 

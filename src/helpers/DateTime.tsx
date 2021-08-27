@@ -3,13 +3,13 @@
    time formatting functions for the app.
 */
 
+// Using GB format for easier time sorting computation
 const formatTime = () => {
   const theDate = new Date();
   const the24Time = theDate.toLocaleTimeString("en-GB");
-  const the12Time = theDate.toLocaleTimeString("en-US");
   return the24Time;
 };
-
+/// Using US format for UI display
 const formatUSTime = () => {
   const theDate = new Date();
   const the12Time = theDate.toLocaleTimeString("en-US");
@@ -49,9 +49,14 @@ const formatDate = (dateItem: string) => {
     "November",
     "December",
   ];
-  const dateObj = new Date(`${dateItem}T00:00:00`);
+  console.log(`dateItem = ${dateItem}`);
+  const theDate = new Date();
+  const the24Time = theDate.toLocaleTimeString("en-GB");
+  const the12Time = theDate.toLocaleTimeString("en-US");
+  const dateObj = new Date(`${dateItem}T${the24Time}`);
   const dayOfWeek = dateObj.getDay();
   const dayOfMonth = dateObj.getDate();
+  console.log(`dayOfMonth = ${dayOfMonth}, the12Time = ${the12Time}`);
   return `${weekDays[dayOfWeek]}, ${
     months[dateObj.getMonth()]
   } ${dayOfMonth}${determineExt(dayOfMonth)}`;

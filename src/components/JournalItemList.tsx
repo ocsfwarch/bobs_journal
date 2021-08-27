@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Button } from "@material-ui/core";
-import { formatDate } from "../helpers/DateTime";
 
 interface IProps {
   journal: {
     date: string;
+    formatdate: string;
     entries: { time: string; ustime: string; content: string }[];
   }[];
   removeFromJournal: (date: string, index: number) => void;
@@ -47,7 +47,7 @@ const JournalItemList: React.FC<IProps> = (props: IProps) => {
       return (
         <li className="li-journal" key={entry.date}>
           <section>
-            <header>{formatDate(entry.date)}</header>
+            <header>{entry.formatdate}</header>
             <div className="">
               <ul className="ul-journal-entries">
                 {entry.entries.map((item, index) => {

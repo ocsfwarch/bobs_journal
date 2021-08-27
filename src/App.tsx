@@ -9,6 +9,7 @@ import { checkForLocalStorage } from "./helpers/Storage";
 export interface IState {
   journal: {
     date: string;
+    formatdate: string;
     entries: { time: string; ustime: string; content: string }[];
   }[];
 }
@@ -64,6 +65,7 @@ const App = () => {
 
   const addToJournal = async (
     date: string,
+    formatdate: string,
     time: string,
     ustime: string,
     content: string
@@ -79,6 +81,7 @@ const App = () => {
         ...previous,
         {
           date: date,
+          formatdate: formatdate,
           entries: [{ time: time, ustime: ustime, content: content }],
         },
       ]);

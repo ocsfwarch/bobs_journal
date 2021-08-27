@@ -66,12 +66,25 @@ textarea {
   background-color: white;
 }
 
+.form-container {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
 .form-section {
   height: 400px;
-  max-width: 800px;
+  width: 300px;
+  /*max-width: 800px;
   margin-left: auto;
-  margin-right: auto;
+  margin-right: auto;*/
   padding: 0 1.5rem;
+  border: 1px solid black;
+  border-radius: 0.5em;
+  box-shadow: 5px 5px 5px 3px grey;
 }
 
 .nav-display {
@@ -186,6 +199,7 @@ textarea {
 .li-entries {
   border: 1px solid black;
   border-radius: 0.5em;
+  box-shadow: 5px 5px 5px 3px grey;
 }
 
 .li-entries:first-of-type {
@@ -193,5 +207,5 @@ textarea {
 }
 
 .li-entries:not(:last-of-type) {
-  margin-bottom: 0.5em;
+  margin-bottom: 0.75em;
 }
