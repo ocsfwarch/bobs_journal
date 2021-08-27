@@ -32,6 +32,16 @@ const JournalItemList: React.FC<IProps> = (props: IProps) => {
         let bDate = new Date(b.date);
         return bDate.getTime() - aDate.getTime();
       });
+      // Sort the journal entries
+      for (let item of props.journal) {
+        if (item.entries && item.entries.length > 1) {
+          item.entries.sort((a: any, b: any) => {
+            let aDate = new Date(`${item.date}T${a.time}`);
+            let bDate = new Date(`${item.date}T${b.time}`);
+            return bDate.getTime() - aDate.getTime();
+          });
+        }
+      }
     }
     return props.journal.map((entry) => {
       return (
