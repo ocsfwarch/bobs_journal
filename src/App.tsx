@@ -19,11 +19,11 @@ const App = () => {
   const [journal, setJournal] = useState<IState["journal"]>([]);
 
   // The purpose of this hook is to clear the status field
-  // after 1 second.
+  // after 2 second.
   useEffect(() => {
     const timer = setTimeout(() => {
       updateStatus("");
-    }, 1000);
+    }, 2000);
     return () => clearTimeout(timer);
   }, [status]);
 
