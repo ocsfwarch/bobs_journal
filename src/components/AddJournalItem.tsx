@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { formatTime } from "../helpers/DateTime";
+import { Button } from "@material-ui/core";
 
 interface IProps {
   addToJournal: (date: string, time: string, content: string) => void;
@@ -24,16 +25,9 @@ const AddJournalItem: React.FC<IProps> = (props: IProps) => {
     });
   };
 
-  const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
-    // Preventing the page from reloading
-    event.preventDefault();
-
+  const submitForm = () => {
     // Save the user item
-    props.addToJournal(
-      journalEntry.date,
-      formatTime(),
-      journalEntry.content
-    );
+    props.addToJournal(journalEntry.date, formatTime(), journalEntry.content);
 
     history.push(`/`);
   };
@@ -59,7 +53,15 @@ const AddJournalItem: React.FC<IProps> = (props: IProps) => {
           onChange={handleChange}
           required
         ></textarea>
-        <button type="submit">Save</button>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={(e) => {
+            submitForm();
+          }}
+        >
+          Save
+        </Button>
       </form>
     </section>
   );

@@ -110,14 +110,14 @@ textarea {
 }
 
 .ul-journal {
-  background-color: yellow;
+  background-color: transparent;
   list-style-type: none;
   padding-inline-start: 0px;
   width: 90%;
 }
 
-.li-journal {
-  border: 1px solid black;
+.li-journal header {
+  /*border: 1px solid black;*/
   border-radius: 0.5em;
 }
 
@@ -132,7 +132,7 @@ textarea {
 .li-journal section {
   display: flex;
   flex-flow: column nowrap;
-  background-color: blue;
+  background-color: white;
 }
 
 .li-journal section header {
@@ -145,22 +145,24 @@ textarea {
 }
 
 .ul-journal-entries {
-  background-color: green;
+  background-color: transparent;
   list-style-type: none;
   padding-inline-start: 0px;
 }
 
 .ul-journal-entries .li-entry-content {
   height: 5em;
-  background-color: red;
+  background-color: transparent;
   padding: 0.25em;
   word-break: break-all;
   transition: all 1s linear;
+  overflow: hidden;
 }
 
 .ul-journal-entries .li-entry-content-expand {
   height: 15em;
   transition: all 1s linear;
+  overflow-y: auto;
 }
 
 .show-more-display {
@@ -176,7 +178,7 @@ textarea {
 }
 
 .ul-journal-entries footer {
-  background-color: pink;
+  background-color: transparent;
   text-align: right;
   padding: 0.25em 0.5em 0.25em 0;
 }
@@ -192,8 +194,4 @@ textarea {
 
 .li-entries:not(:last-of-type) {
   margin-bottom: 0.5em;
-}
-
-.li-entries:last-of-type {
-  margin-bottom: 0.25em;
 }
