@@ -1,5 +1,9 @@
-import { useState } from "react";
-import { Button } from "@material-ui/core";
+/*
+   The purpose of this component is to display a
+   list of journal entries.
+*/
+
+import JournalItem from "./JournalItem";
 
 interface IProps {
   journal: {
@@ -11,18 +15,6 @@ interface IProps {
 }
 
 const JournalItemList: React.FC<IProps> = (props: IProps) => {
-  const [showMore, setShowMore] = useState(false);
-  const [itemId, setItemId] = useState("");
-
-  const handleDelete = (date: string, index: number) => {
-    props.removeFromJournal(date, index);
-  };
-
-  const showDetails = async (key: string) => {
-    setShowMore(!showMore);
-    setItemId(key);
-  };
-
   const renderList = (): JSX.Element[] => {
     // Check if we need to sort the list
     if (props.journal && props.journal.length > 1) {
@@ -51,52 +43,14 @@ const JournalItemList: React.FC<IProps> = (props: IProps) => {
             <div className="">
               <ul className="ul-journal-entries">
                 {entry.entries.map((item, index) => {
-                  let showMoreButton = false;
-                  if (item.content.length > 150) {
-                    showMoreButton = true;
-                  }
                   return (
-                    <li className="li-entries" key={`${item.time}-${index}`}>
-                      <div
-                        className={
-                          showMore && itemId === `${item.time}-${index}`
-                            ? "li-entry-content  li-entry-content-expand"
-                            : "li-entry-content"
-                        }
-                      >
-                        {item.ustime} - {item.content}
-                      </div>
-                      <footer>
-                        <span
-                          className={
-                            showMoreButton
-                              ? "show-more-display"
-                              : "show-more-hide"
-                          }
-                        >
-                          <Button
-                            variant="contained"
-                            color="primary"
-                            onClick={(e) => {
-                              showDetails(`${item.time}-${index}`);
-                            }}
-                          >
-                            {showMore && itemId === `${item.time}-${index}`
-                              ? "View Less"
-                              : "View More"}
-                          </Button>
-                        </span>
-                        <Button
-                          variant="contained"
-                          color="primary"
-                          onClick={(e) => {
-                            handleDelete(entry.date, index);
-                          }}
-                        >
-                          Delete
-                        </Button>
-                      </footer>
-                    </li>
+                    <JournalItem
+                      key={`${entry.date}-${index}`}
+                      entryDate={entry.date}
+                      index={index}
+                      item={item}
+                      removeFromJournal={props.removeFromJournal}
+                    />
                   );
                 })}
               </ul>
