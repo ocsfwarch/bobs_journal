@@ -89,7 +89,7 @@ textarea {
 
 .nav-display {
   display: flex;
-  justify-content:space-evenly;
+  justify-content: space-evenly;
   align-items: center;
   height: 4em;
   box-shadow: rgb(0 0 0 / 17%) 0px -23px 25px 0px inset,
@@ -127,6 +127,13 @@ textarea {
   list-style-type: none;
   padding-inline-start: 0px;
   width: 90%;
+}
+
+.li-journal-noentries {
+  border: 1px solid black;
+  border-radius: 0.5em;
+  padding: 0.25em;
+  font-size: 1.15em;
 }
 
 .li-journal header {
