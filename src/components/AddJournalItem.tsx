@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { formatDate, formatTime, formatUSTime } from "../helpers/DateTime";
+import {
+  today,
+  formatDate,
+  formatTime,
+  formatUSTime,
+} from "../helpers/DateTime";
 import { Button } from "@material-ui/core";
 
 interface IProps {
@@ -13,9 +18,11 @@ interface IProps {
   ) => void;
 }
 
+const TODAY = today();
+
 const AddJournalItem: React.FC<IProps> = (props: IProps) => {
   const [journalEntry, setJournalEntry] = useState({
-    date: "",
+    date: TODAY,
     formatdate: "",
     time: "",
     ustime: "",

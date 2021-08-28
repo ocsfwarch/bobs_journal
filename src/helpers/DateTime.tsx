@@ -3,6 +3,18 @@
    time formatting functions for the app.
 */
 
+// Formats a Date object as YYYY-MM-DD.
+function asDateString(date: Date) {
+  return `${date.getFullYear().toString()}-${(date.getMonth() + 1)
+    .toString()
+    .padStart(2, "0")}-${date.getDate().toString().padStart(2, "0")}`;
+}
+
+// Today's date as YYYY-MM-DD.
+const today = () => {
+  return asDateString(new Date());
+};
+
 // Using GB format for easier time sorting computation
 const formatTime = () => {
   const theDate = new Date();
@@ -49,14 +61,11 @@ const formatDate = (dateItem: string) => {
     "November",
     "December",
   ];
-  console.log(`dateItem = ${dateItem}`);
   const theDate = new Date();
   const the24Time = theDate.toLocaleTimeString("en-GB");
-  const the12Time = theDate.toLocaleTimeString("en-US");
   const dateObj = new Date(`${dateItem}T${the24Time}`);
   const dayOfWeek = dateObj.getDay();
   const dayOfMonth = dateObj.getDate();
-  console.log(`dayOfMonth = ${dayOfMonth}, the12Time = ${the12Time}`);
   return `${weekDays[dayOfWeek]}, ${
     months[dateObj.getMonth()]
   } ${dayOfMonth}${determineExt(dayOfMonth)}`;
@@ -72,4 +81,4 @@ const determineExt = (day: number) => {
   }
 };
 
-export { formatDate, formatTime, formatUSTime };
+export { today, formatDate, formatTime, formatUSTime };
