@@ -89,7 +89,7 @@ textarea {
 
 .nav-display {
   display: flex;
-  justify-content: space-evenly;
+  justify-content:space-evenly;
   align-items: center;
   height: 4em;
   box-shadow: rgb(0 0 0 / 17%) 0px -23px 25px 0px inset,
@@ -151,7 +151,7 @@ textarea {
 .li-journal section header {
   flex: 0 0 0;
   height: 3em;
-  background-color: gray;
+  background-color: lightgray;
   font-size: 1.15em;
   font-weight: 600;
   padding-left: 1em;
@@ -166,7 +166,7 @@ textarea {
 .ul-journal-entries .li-entry-content {
   height: 5em;
   background-color: transparent;
-  padding: 0.25em;
+  padding: 0.5em;
   word-break: break-all;
   transition: all 1s linear;
   overflow: hidden;
